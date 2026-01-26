@@ -17,16 +17,18 @@ If the user inputs:
   Hobby: playing guitar
 
 Your script might output:
-  "Hello! My name is Priya. I'm 22 years old and live in Jaipur. I work as a Software Developer and I absolutely enjoy playing guitar in my free time. Nice to meet you!"
+  "Hello! My name is Priya. I'm 22 years old and live in Jaipur. I work as a Software Developer and 
+  I absolutely enjoy playing guitar in my free time. Nice to meet you!"
 
 Bonus:
 - Add the current date to the end of the paragraph like: "Logged on: 2025-06-14"
 - Wrap the printed message with a decorative border of stars (*)
 """
 import datetime
+import textwrap
 
 name = input("What is your name ? ").strip()
-age = input("How old are you ? ").strip()
+age = int(input("How old are you ? ").strip())
 city = input("Which city do you live in? ").strip()
 profession = input("What is your profession? ").strip()
 hobby = input("What is your favourite hobby? ").strip()
@@ -35,11 +37,14 @@ intro_message = (f"Hello! my name is {name}, I'm {age} years old and live in {ci
     f"I work as a {profession} and \nI absolutely enjoy {hobby} in my free time. "
     f"Nice to meet you!\n")
 
+width = 80
+wrapped = textwrap.fill(intro_message, width=width)
+border = "*" * width
+
 current_date = datetime.date.today().isoformat()
 intro_message += f"Logged on: {current_date}"
 
-border = "*" * 80
-final_output = f"{border}\n{intro_message}\n{border}"
+final_output = f"{border}\n{wrapped}\n{border}"
 
 print(final_output)
 
